@@ -850,3 +850,126 @@ Rendering ideas/get
   [4;36;1mUser Load (0.4ms)[0m   [0;1mSELECT * FROM "users" [0m
 Rendered layouts/_tab_bar (0.4ms)
 Completed in 18ms (View: 8, DB: 1) | 200 OK [http://localhost/idea/0]
+
+
+Processing IdeasController#index (for 127.0.0.1 at 2009-01-15 20:47:56) [POST]
+  Parameters: {"idea"=>{"name"=>"some darn thing", "marketing"=>"", "elevator"=>"", "full"=>"eothunetuh", "user_id"=>"1"}, "authenticity_token"=>"c865d51447db69a61a2a01381779d2357c91294a", "id"=>"0", "grammatical_number"=>"singular"}
+  [4;35;1mUser Load (0.3ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."login" = 'casey') LIMIT 1[0m
+  [4;36;1mIdea Create (2.9ms)[0m   [0;1mINSERT INTO "ideas" ("name", "updated_at", "marketing", "elevator", "user_id", "full", "created_at") VALUES('some darn thing', '2009-01-16 01:47:56', '', '', 1, 'eothunetuh', '2009-01-16 01:47:56')[0m
+Redirected to http://localhost:3006/idea/1
+Completed in 24ms (DB: 3) | 302 Found [http://localhost/idea/0]
+
+
+Processing IdeasController#index (for 127.0.0.1 at 2009-01-15 20:47:56) [GET]
+  Parameters: {"id"=>"1", "grammatical_number"=>"singular"}
+  [4;35;1mUser Load (0.2ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."login" = 'casey') LIMIT 1[0m
+  [4;36;1mIdea Load (0.4ms)[0m   [0;1mSELECT * FROM "ideas" WHERE ("ideas"."id" = 1) [0m
+Rendering template within layouts/application
+Rendering ideas/get
+  [4;35;1mUser Load (0.5ms)[0m   [0mSELECT * FROM "users" [0m
+Rendered layouts/_tab_bar (0.5ms)
+Completed in 69ms (View: 9, DB: 1) | 200 OK [http://localhost/idea/1]
+
+
+Processing IdeasController#index (for 127.0.0.1 at 2009-01-15 20:47:58) [GET]
+  Parameters: {"grammatical_number"=>"plural"}
+  [4;36;1mUser Load (0.2ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."login" = 'casey') LIMIT 1[0m
+  [4;35;1mIdea Load (0.3ms)[0m   [0mSELECT * FROM "ideas" LIMIT 7 OFFSET 0[0m
+Rendering template within layouts/application
+Rendering ideas/gets
+
+
+ActionView::TemplateError (undefined method `user' for #<Idea:0x7fca23a35058>) on line #37 of app/views/ideas/gets.html.erb:
+34:   <% @ideas.each do |idea| %>
+35:       <tr ondblclick="Rickets.showRow( this );"onclick="Rickets.selectRow( this );" id="<%= idea_path( :id => idea.id ) %>">
+36:         <td><%=h idea.name %></td>
+37:         <td><%=h idea.user.name %></td>
+38:         <td><%=h idea.elevator %></td>
+39:       </tr>
+40:   <% end %>
+
+    vendor/rails/activerecord/lib/active_record/attribute_methods.rb:260:in `method_missing'
+    app/views/ideas/gets.html.erb:37
+    app/views/ideas/gets.html.erb:34:in `each'
+    app/views/ideas/gets.html.erb:34
+    vendor/rails/actionpack/lib/action_view/renderable.rb:39:in `send'
+    vendor/rails/actionpack/lib/action_view/renderable.rb:39:in `render'
+    vendor/rails/actionpack/lib/action_view/template.rb:73:in `render_template'
+    vendor/rails/actionpack/lib/action_view/base.rb:256:in `render'
+    vendor/rails/actionpack/lib/action_view/base.rb:367:in `_render_with_layout'
+    vendor/rails/actionpack/lib/action_view/base.rb:254:in `render'
+    vendor/rails/actionpack/lib/action_controller/base.rb:1174:in `render_for_file'
+    vendor/rails/actionpack/lib/action_controller/base.rb:905:in `render_without_benchmark'
+    vendor/rails/actionpack/lib/action_controller/benchmarking.rb:51:in `render'
+    vendor/rails/activesupport/lib/active_support/core_ext/benchmark.rb:8:in `realtime'
+    vendor/rails/actionpack/lib/action_controller/benchmarking.rb:51:in `render'
+    vendor/rails/actionpack/lib/action_controller/mime_responds.rb:135:in `send'
+    vendor/rails/actionpack/lib/action_controller/mime_responds.rb:135:in `custom'
+    vendor/rails/actionpack/lib/action_controller/mime_responds.rb:164:in `call'
+    vendor/rails/actionpack/lib/action_controller/mime_responds.rb:164:in `respond'
+    vendor/rails/actionpack/lib/action_controller/mime_responds.rb:158:in `each'
+    vendor/rails/actionpack/lib/action_controller/mime_responds.rb:158:in `respond'
+    vendor/rails/actionpack/lib/action_controller/mime_responds.rb:107:in `respond_to'
+    app/controllers/ideas_controller.rb:12:in `gets'
+    vendor/rails/actionpack/lib/action_controller/base.rb:1253:in `send'
+    vendor/rails/actionpack/lib/action_controller/base.rb:1253:in `perform_action_without_filters'
+    vendor/rails/actionpack/lib/action_controller/filters.rb:617:in `call_filters'
+    vendor/rails/actionpack/lib/action_controller/filters.rb:610:in `perform_action_without_benchmark'
+    vendor/rails/actionpack/lib/action_controller/benchmarking.rb:68:in `perform_action_without_rescue'
+    /opt/ruby-enterprise-1.8.6-20081215/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    vendor/rails/actionpack/lib/action_controller/benchmarking.rb:68:in `perform_action_without_rescue'
+    vendor/rails/actionpack/lib/action_controller/rescue.rb:136:in `perform_action_without_caching'
+    vendor/rails/actionpack/lib/action_controller/caching/sql_cache.rb:13:in `perform_action'
+    vendor/rails/activerecord/lib/active_record/connection_adapters/abstract/query_cache.rb:34:in `cache'
+    vendor/rails/activerecord/lib/active_record/query_cache.rb:8:in `cache'
+    vendor/rails/actionpack/lib/action_controller/caching/sql_cache.rb:12:in `perform_action'
+    vendor/rails/actionpack/lib/action_controller/base.rb:524:in `send'
+    vendor/rails/actionpack/lib/action_controller/base.rb:524:in `process_without_filters'
+    vendor/rails/actionpack/lib/action_controller/filters.rb:606:in `process_without_session_management_support'
+    vendor/rails/actionpack/lib/action_controller/session_management.rb:134:in `process'
+    vendor/rails/actionpack/lib/action_controller/base.rb:392:in `process'
+    vendor/rails/actionpack/lib/action_controller/dispatcher.rb:183:in `handle_request'
+    vendor/rails/actionpack/lib/action_controller/dispatcher.rb:110:in `dispatch_unlocked'
+    vendor/rails/actionpack/lib/action_controller/dispatcher.rb:123:in `dispatch'
+    vendor/rails/actionpack/lib/action_controller/dispatcher.rb:122:in `synchronize'
+    vendor/rails/actionpack/lib/action_controller/dispatcher.rb:122:in `dispatch'
+    vendor/rails/actionpack/lib/action_controller/dispatcher.rb:132:in `dispatch_cgi'
+    vendor/rails/actionpack/lib/action_controller/dispatcher.rb:39:in `dispatch'
+    vendor/rails/railties/lib/webrick_server.rb:103:in `handle_dispatch'
+    vendor/rails/railties/lib/webrick_server.rb:74:in `service'
+    /opt/ruby-enterprise-1.8.6-20081215/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    /opt/ruby-enterprise-1.8.6-20081215/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    /opt/ruby-enterprise-1.8.6-20081215/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    /opt/ruby-enterprise-1.8.6-20081215/lib/ruby/1.8/webrick/server.rb:162:in `start'
+    /opt/ruby-enterprise-1.8.6-20081215/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+    /opt/ruby-enterprise-1.8.6-20081215/lib/ruby/1.8/webrick/server.rb:95:in `start'
+    /opt/ruby-enterprise-1.8.6-20081215/lib/ruby/1.8/webrick/server.rb:92:in `each'
+    /opt/ruby-enterprise-1.8.6-20081215/lib/ruby/1.8/webrick/server.rb:92:in `start'
+    /opt/ruby-enterprise-1.8.6-20081215/lib/ruby/1.8/webrick/server.rb:23:in `start'
+    /opt/ruby-enterprise-1.8.6-20081215/lib/ruby/1.8/webrick/server.rb:82:in `start'
+    vendor/rails/railties/lib/webrick_server.rb:60:in `dispatch'
+    vendor/rails/railties/lib/commands/servers/webrick.rb:66
+    /opt/ruby-enterprise-1.8.6-20081215/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+    /opt/ruby-enterprise-1.8.6-20081215/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `require'
+    vendor/rails/activesupport/lib/active_support/dependencies.rb:153:in `require'
+    vendor/rails/activesupport/lib/active_support/dependencies.rb:521:in `new_constants_in'
+    vendor/rails/activesupport/lib/active_support/dependencies.rb:153:in `require'
+    vendor/rails/railties/lib/commands/server.rb:49
+    /opt/ruby-enterprise-1.8.6-20081215/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+    /opt/ruby-enterprise-1.8.6-20081215/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `require'
+    script/server:3
+
+Rendered /home/clr/ruby/rails/consultant_ideas/vendor/rails/actionpack/lib/action_controller/templates/rescues/_trace (19.8ms)
+Rendered /home/clr/ruby/rails/consultant_ideas/vendor/rails/actionpack/lib/action_controller/templates/rescues/_request_and_response (0.8ms)
+Rendering /home/clr/ruby/rails/consultant_ideas/vendor/rails/actionpack/lib/action_controller/templates/rescues/layout.erb (internal_server_error)
+
+
+Processing IdeasController#index (for 127.0.0.1 at 2009-01-15 20:49:29) [GET]
+  Parameters: {"grammatical_number"=>"plural"}
+  [4;36;1mUser Load (0.2ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."login" = 'casey') LIMIT 1[0m
+  [4;35;1mIdea Load (0.3ms)[0m   [0mSELECT * FROM "ideas" LIMIT 7 OFFSET 0[0m
+Rendering template within layouts/application
+Rendering ideas/gets
+  [4;36;1mUser Load (0.3ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+Rendered layouts/_tab_bar (0.4ms)
+Completed in 21ms (View: 10, DB: 1) | 200 OK [http://localhost/ideas]

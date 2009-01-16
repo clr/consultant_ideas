@@ -17,15 +17,15 @@
         <td><%= f.select :user_id, User.all.collect{ |u| [ u.name, u.id ] }, {} %></td>
       </tr>
       <tr>
-        <td class="label">Elevator:</td>
+        <td class="label">Elevator Pitch:</td>
         <td><%= f.text_area :elevator %></td>
       </tr>
       <tr>
-        <td class="label">Full:</td>
+        <td class="label">Full Story:</td>
         <td><%= f.text_area :full %></td>
       </tr>
       <tr>
-        <td class="label">Marketing:</td>
+        <td class="label">Marketing Angles:</td>
         <td><%= f.text_area :marketing %></td>
       </tr>
     </tbody>
