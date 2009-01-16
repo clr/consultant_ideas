@@ -1,0 +1,24 @@
+ted:
+  id: 1
+  name: Ted
+  login: ted
+  email: ted@example.com
+  crypted_password: bb4463f7ad48c3e1f61d2f666bd4e199f744e73c #test
+  salt: fa8673da36f5abd7cfba0020b5c5ae77893880b0
+
+nick:
+  id: 2
+  name: Nick
+  login: nick
+  email: nick@example.com
+  crypted_password: bb4463f7ad48c3e1f61d2f666bd4e199f744e73c #test
+  salt: fa8673da36f5abd7cfba0020b5c5ae77893880b0
+
+casey:
+  id: 3
+  name: Casey
+  login: casey
+  email: casey@example.com
+  crypted_password: bb4463f7ad48c3e1f61d2f666bd4e199f744e73c #test
+  salt: fa8673da36f5abd7cfba0020b5c5ae77893880b0
+

@@ -1,0 +1,2 @@
+page.call "$( document.getElementById( '#{ user_path( @user )  }' ) ).fadeOut"
+

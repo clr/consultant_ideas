@@ -1,0 +1,43 @@
+<div class="ext_style">
+  <div class="header">Idea: <%= @idea.name %></div>
+
+<% form_for( @idea, :url => idea_path ) do |f| %>
+  <table class="form_area">
+    <tbody>
+      <tr class="top_padding">
+        <td class="label">&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td class="label">Name:</td>
+        <td><%= f.text_field :name, :class => "string" %></td>
+      </tr>
+      <tr>
+        <td class="label">User:</td>
+        <td><%= f.select :user_id, User.all.collect{ |u| [ u.name, u.id ] }, {} %></td>
+      </tr>
+      <tr>
+        <td class="label">Elevator:</td>
+        <td><%= f.text_area :elevator %></td>
+      </tr>
+      <tr>
+        <td class="label">Full:</td>
+        <td><%= f.text_area :full %></td>
+      </tr>
+      <tr>
+        <td class="label">Marketing:</td>
+        <td><%= f.text_area :marketing %></td>
+      </tr>
+    </tbody>
+    
+    <tfoot>
+      <tr>
+        <td colspan="2">
+          <button type="submit">Save</button>
+          <button type="button" onclick="document.location='<%= ideas_path %>';return false;">Cancel</button>
+        </td>
+    </tfoot>
+  </table>
+<% end %>
+</div>
+

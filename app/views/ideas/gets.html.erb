@@ -1,0 +1,65 @@
+<div id="context_menu_div" class="contextMenu">
+  <ul>
+    <li><%= link_to( "<div>New...</div>", idea_path( :id => 0 ), :class => :new ) %></li>
+    <li><%= link_to_function( "<div>Edit...</div>", "Rickets.redirectToSelectedRow( $('#datagrid_tbody') )", :class => :edit ) %></li>
+    <li><%= link_to_function( "<div>Delete...</div>", "Rickets.destroySelectedRow( $('#datagrid_tbody') )", :class => :destroy ) %></li>
+  </ul>
+</div>
+<div class="ext_style">
+  <div class="header">Listing Ideas</div>
+  <div class="button_bar">
+    <div><%= link_to( "<div>New...</div>", idea_path( :id => 0 ), :class => :new ) %></div>
+    <div class="separator"></div>
+    <div><%= link_to_function( "<div>Edit...</div>", "Rickets.redirectToSelectedRow( $('#datagrid_tbody') )", :class => :edit ) %></div>
+    <div class="separator"></div>
+    <div><%= link_to_function( "<div>Delete...</div>", "Rickets.destroySelectedRow( $('#datagrid_tbody') )", :class => :destroy ) %></div>
+     <form method="get" action="">
+      <button type="submit" class="search"></button>
+      <div class="search">Search:
+        <input type="text" name="search" class="autocomplete" autocomplete="off" value="<%= params[:search] %>" />
+      </div>
+    </form>
+  </div>
+  <table class="list">
+
+    <thead>
+      <tr>
+        <th><%= rickets_header "name", "Name" %></th>
+        <th><%= rickets_header "user_id", "Proposed By" %></th>
+        <th><%= rickets_header "elevator", "Elevator" %></th>
+      </tr>
+    </thead>
+
+    <tbody id="datagrid_tbody">
+  <% @ideas.each do |idea| %>
+      <tr ondblclick="Rickets.showRow( this );"onclick="Rickets.selectRow( this );" id="<%= idea_path( :id => idea.id ) %>">
+        <td><%=h idea.name %></td>
+        <td><%=h idea.user.name %></td>
+        <td><%=h idea.elevator %></td>
+      </tr>
+  <% end %>
+    </tbody>
+
+    <tfoot>
+      <tr>
+        <td colspan="6">
+          <div class="pagination_info">
+             <%= page_entries_info @ideas %>
+          </div>
+          <%= will_paginate @ideas, :prev_label => "<span class='prev'>&nbsp;&nbsp;&nbsp;&nbsp;</span>", :next_label => "<span class='next'>&nbsp;&nbsp;&nbsp;&nbsp;</span>" %>
+        </td>
+      </tr>
+    </tfoot>
+
+  </table>
+</div>
+<% javascript_tag do -%>
+$( '#datagrid_tbody tr' ).contextMenu( 'context_menu_div', { 
+  onContextMenu: function( event ) {
+    Rickets.selectRow( event.currentTarget );
+    return true;
+  }
+} );
+$( 'input.autocomplete' ).autocomplete( { ajax: "<%= auto_completes_path( :resource => 'idea' ) %>" } );
+<% end -%>
+
