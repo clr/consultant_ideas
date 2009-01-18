@@ -5860,3 +5860,35 @@ Rendered idea_rankings/_get (1.0ms)
 Rendered idea_rankings/_get (1.3ms)
 Rendered layouts/_tab_bar (0.5ms)
 Completed in 41ms (View: 25, DB: 3) | 200 OK [http://localhost/rank/1]
+
+
+Processing IdeasController#index (for 127.0.0.1 at 2009-01-18 14:25:31) [GET]
+  Parameters: {"grammatical_number"=>"plural"}
+  [4;36;1mUser Load (0.3ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."login" = 'casey') LIMIT 1[0m
+  [4;35;1mIdea Load (0.6ms)[0m   [0mSELECT * FROM "ideas" LIMIT 7 OFFSET 0[0m
+Rendering template within layouts/application
+Rendering ideas/gets
+  [4;36;1mUser Load (0.4ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 3) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 3) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 3) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 3) [0m
+Rendered layouts/_tab_bar (0.6ms)
+Completed in 27ms (View: 16, DB: 1) | 200 OK [http://localhost/ideas]
+
+
+Processing IdeasController#index (for 127.0.0.1 at 2009-01-18 14:25:32) [GET]
+  Parameters: {"id"=>"1", "grammatical_number"=>"singular"}
+  [4;36;1mUser Load (0.3ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."login" = 'casey') LIMIT 1[0m
+  [4;35;1mIdea Load (0.2ms)[0m   [0mSELECT * FROM "ideas" WHERE ("ideas"."id" = 1) [0m
+Rendering template within layouts/application
+Rendering ideas/get
+  [4;36;1mUser Load (0.5ms)[0m   [0;1mSELECT * FROM "users" [0m
+  [4;35;1mComment Load (0.4ms)[0m   [0mSELECT * FROM "comments" WHERE ("comments".idea_id = 1) [0m
+Rendered comments/_get (12.7ms)
+Rendered comments/_get (0.8ms)
+Rendered comments/_get (0.7ms)
+  [4;36;1mUser Load (0.4ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 3) [0m
+Rendered comments/_get (1.3ms)
+Rendered comments/_get (1.0ms)
+Rendered layouts/_tab_bar (0.5ms)
+Completed in 48ms (View: 32, DB: 2) | 200 OK [http://localhost/idea/1]
