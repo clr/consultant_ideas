@@ -1,0 +1,32 @@
+<% comment ||= get -%>
+<% @comment ||= comment -%>
+<% if comment.new_record? -%>
+<% form_for :comment do |f| -%>
+  <%= f.hidden_field :idea_id -%>
+<table id="new_comment" class="panel">
+  <tbody>
+    <tr>
+      <td colspan="2"><%= current_user.name %> is saying right now:</td>
+    </tr>
+    <tr>
+      <td colspan="2"><%= f.text_area :body, :class => "string" %></td>
+    </tr>
+    <tr>
+      <td colspan="2"><button onclick="$.ajax({data:$.param($(this.form).serializeArray()) + '&authenticity_token=' + encodeURIComponent('<%= escape_javascript form_authenticity_token %>'), success:function(request){ $( '#new_comment' ).before( request );}, type:'post', url:'/comment/0'});return false;" type="submit">Comment</button>
+    </tr>
+  </tbody>
+</table>
+<% end -%>
+<% else -%>
+<table class="panel">
+  <tbody>
+    <tr>
+      <td colspan="2"><%= comment.user.name if comment.user %> said on <%= nice_date comment.created_at %>:</td>
+    </tr>
+    <tr>
+      <td colspan="2"><%= comment.body %></td>
+    </tr>
+<% end -%>
+  </tbody>
+</table>
+
