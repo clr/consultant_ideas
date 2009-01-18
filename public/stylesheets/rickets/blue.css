@@ -672,7 +672,7 @@ div.ext_sub_panel li button.save {
   border: 0px;
   background: transparent url(/images/rickets/blue/ext_inline_save.png) no-repeat; 
 }
-div.ext_sub_panel li button.destroy {
+div.ext_sub_panel li button.destroy, div.ext_sub_panel li button.destroy:hover {
   width: 24px;
   height: 20px;
   margin: 0px;

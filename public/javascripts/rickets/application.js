@@ -29,10 +29,12 @@ var Rickets = {
     rows.removeClass( 'selected' );
   },
 
-  findSelectedRow: function( table ) {
+  findSelectedRow: function( table, volume_level ) {
     var tr = table.find( "tr.selected:first" );
     if( tr.length < 1 ) {
-      alert( "Please select a row first." );
+			if( volume_level != 'quiet') {
+	      alert( "Please select a row first." );
+			}
       return false;
     } else {
       return tr;
@@ -45,10 +47,13 @@ var Rickets = {
   },
   
   newChildForSelectedRow: function( table, url ) {
-    var match = Rickets.findSelectedRow( table );
+    var match = Rickets.findSelectedRow( table, 'quiet' );
     if( match ) {
-      document.location = url + '?parent_id=' + Rickets.extractId( match.id );
+      document.location = url + '?parent_id=' + Rickets.extractId( match.attr('id') );
     }
+		else {
+			document.location = url + '?parent_id=0'
+		}
   },
 
   redirectToSelectedRow: function( table ) {
@@ -94,12 +99,23 @@ var Rickets = {
     }
   },
 
+  insertAssociatedItem: function( container, url, object_uri ) {
+    var parts = object_uri.split( "/" );
+    var object_id = parts.pop();
+    var object_type = parts.pop()
+    $.ajax( {
+      data: 'object_id=' + object_id + '&object_type=' + object_type,
+      success: function( request ){ $( container ).prepend( request ); },
+      url: url
+    } )
+  },
+
   publishForm: function( button ) {
-    var c = confirm( "Accept all pending changes and publish this to the live site?" );
-    if( c ) {
-      $('workflow').value='publish';
-      button.form.submit();
-    }
+	  var c = confirm( "Accept all pending changes and publish this to the live site?" );
+	  if( c ) {
+	    $('#workflow').attr('value','publish');
+	    button.form.submit();
+	  }
   },
   
   revertForm: function( button ) {
@@ -108,6 +124,18 @@ var Rickets = {
       $('workflow').value='revert';
       button.form.submit();
     }
+  },
+  
+  // We want something like media_list[]=page_3&media_list[]=video_6&media_list[]=page_5
+  serializeSortable: function( button, sortable ) {
+    button.form.action = button.form.action + "?" + $( sortable ).sortable( 'serialize', { attribute:'position', expression:'(.+)[\|](.+)' } );
+    return true;
   }
   
+}
+
+String.prototype.toCamelCase = function(){
+  return $.map( this.split( / |_/ ), function( word ){
+    return word.charAt(0).toUpperCase() + word.substr(1).toLowerCase();
+  } ).join( "" );
 }

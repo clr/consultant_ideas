@@ -42,6 +42,6 @@ class AutoCompletesController < ApplicationController
     
     # Add your model resource names below, like: %w( dog cat mouse )
     def allowed_resources
-      %w( idea )
+      %w( rank ranking idea )
     end
 end

@@ -1,0 +1,57 @@
+<div class="ext_style">
+  <div class="header">Rank: <%= @rank.name %></div>
+
+<% form_for( @rank, :url => rank_path ) do |f| %>
+  <table class="form_area">
+    <tbody>
+      <tr class="top_padding">
+        <td class="label">&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td class="label">Name:</td>
+        <td><%= f.text_field :name, :class => "string" %></td>
+      </tr>
+      <tr>
+        <td class="label">User:</td>
+        <td><%= f.select :user_id, User.all.collect{ |u| [ u.name, u.id ] }, { :include_blank => true } %></td>
+      </tr>
+      <tr id="tr_ideas">
+        <td colspan="2" class="panel">
+          <div class="ext_sub_panel ext_sortable_panel">
+      			<div class="add_sortable_item">
+      			  Add idea to this rank:
+	            <ul class="scrollable">
+  						<% Idea.all.each do |object| %>
+  						  <li onclick="Rickets.insertAssociatedItem( 'ul#ul_ideas', '<%= idea_ranking_path( :id => 0 ) %>', '<%= idea_path( :id => object ) %>' );"><strong><%= object.name %>:</strong> <%= object.elevator[0..20] %>...</li>
+  						<% end %>
+    				  </ul>
+		        </div>
+          </div>
+        </td>
+      </tr>
+			<tr>
+        <td colspan="2" class="panel">
+          <div class="ext_sub_panel ext_sortable_panel">
+						<ul id="ul_ideas" class="sortables">
+		          <%= render :partial => 'idea_rankings/get', :collection => @rank.idea_rankings %>
+		        </ul>
+					</div>
+				</td>
+      </tr>
+    </tbody>
+    
+    <tfoot>
+      <tr>
+        <td colspan="2">
+          <button type="submit" onclick="Rickets.serializeSortable( this, 'ul#ul_ideas' )"><%= @rank.new_record? ? "Create" : "Save" %></button>          
+          <button type="button" onclick="document.location='<%= ranks_path %>';return false;">Cancel</button>
+        </td>
+    </tfoot>
+  </table>
+<% end %>
+</div>
+<% javascript_tag do %>
+  $( 'ul#ul_ideas' ).sortable( {
+  } );
+<% end -%>

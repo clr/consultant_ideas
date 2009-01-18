@@ -25,7 +25,7 @@
     <tfoot>
       <tr>
         <td colspan="2">
-          <button type="submit">Save</button>
+          <button type="submit"><%= @user.new_record? ? "Create" : "Save" %></button>
           <button type="button" onclick="document.location='<%= users_path %>';return false;">Cancel</button>
         </td>
     </tfoot>

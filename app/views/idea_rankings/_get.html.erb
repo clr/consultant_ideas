@@ -1,0 +1,15 @@
+<%# object is our IdeaRanking %>
+<% object ||= get %>
+<li id="<%= ricket_path( object.idea ) %>" position="ideas|<%= object.idea.class.name.underscore + ':' + object.idea.id.to_s %>">
+	<div class="inline_bar">
+	  <button type="submit" onclick="$( 'li[id=\'<%=  ricket_path( object.idea ) %>\']' ).remove();return false;" class="destroy"></button>
+  </div>
+  <div class="panel_content">
+  <% if object.idea %>
+    <strong><%= object.idea.name %>:</strong> <%= object.idea.elevator %>
+  <% else %>
+    missing resource
+  <% end %>
+  </div>
+</li>
+
