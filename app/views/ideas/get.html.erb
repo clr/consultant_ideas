@@ -14,7 +14,7 @@
       </tr>
       <tr>
         <td class="label">User:</td>
-        <td><%= f.select :user_id, User.all.collect{ |u| [ u.name, u.id ] }, {} %></td>
+        <td><%= f.select :user_id, User.all.collect{ |u| [ u.name, u.id ] }, { :include_blank => true } %></td>
       </tr>
       <tr>
         <td class="label">Elevator Pitch:</td>
@@ -39,5 +39,16 @@
     </tfoot>
   </table>
 <% end %>
+  <table class="form_area">
+    <tbody>
+      <tr>
+      	<td class="label">Comments:</td>
+      	<td>
+<%= render :partial => 'comments/get', :collection => @idea.comments %>      	
+<%= render :partial => 'comments/get', :object => Comment.new( :idea_id => @idea.id ) %>      	
+      	</td>
+      </tr>
+    </tbody>
+  </table>
 </div>
 

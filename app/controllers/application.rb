@@ -5,6 +5,8 @@ class ApplicationController < ActionController::Base
 
   helper :all
 
+  
+
   def set_defaults
     @default_per_page = 20
   end

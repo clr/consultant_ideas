@@ -9,6 +9,8 @@ ActionController::Routing::Routes.draw do |map|
   map.users 'users', :controller => 'users', :grammatical_number => 'plural'
   map.collection_of_users 'users/:ids', :controller => 'users', :ids => /(\d,)+/, :grammatical_number => 'plural'
 
+  map.comment 'comment/:id', :controller => 'comments', :id => /\d+/, :grammatical_number => 'singular'
+
   map.root :controller => 'ideas', :grammatical_number => 'plural'
   map.connect ':controller/:action/:id'
   map.connect ':controller/:action/:id.:format'

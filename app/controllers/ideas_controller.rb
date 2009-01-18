@@ -22,6 +22,7 @@ class IdeasController < ApplicationController
   end
 
   def post
+    params[:idea][:user_id] = current_user.id unless ( params[:idea][:user_id] && params[:idea][:user_id].length > 0 )
     respond_to do |format|
       if @idea = Idea.create( params[:idea] )
         flash[:notice] = 'Idea was successfully created.'
@@ -33,6 +34,7 @@ class IdeasController < ApplicationController
   end
 
   def put
+    params[:idea][:user_id] = current_user.id unless ( params[:idea][:user_id] && params[:idea][:user_id].length > 0 )
     respond_to do |format|
       if @idea.update_attributes( params[:idea] )
         flash[:notice] = 'Idea was successfully updated.'

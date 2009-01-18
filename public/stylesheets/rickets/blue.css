@@ -195,6 +195,32 @@ div.ext_style div.header {
   text-indent: 1.7em;
 }
 
+div.ext_style div.header div {
+  float: left;
+}
+
+div.ext_style div.header div.separator {
+  width: 2px;
+  height: 20px;
+  margin-left: 1.7em;
+  padding: 0px;
+  background: transparent url(/images/rickets/blue/ext_button_bar_separator.png) repeat-x 0pt -4pt;
+}
+
+div.ext_style div.header div a {
+  text-decoration: none;
+  color: #9d9d9d;
+}
+
+div.ext_style div.header div a.selected {
+  color: #15428b;
+}
+
+div.ext_style div.header div a:hover {
+  color: #15428b;
+}
+
+
 div.ext_style div.button_bar {
   height: 25px;
   background: transparent url(/images/rickets/blue/ext_button_bar.png) repeat-x;
@@ -284,6 +310,12 @@ div.ext_style table.list thead th {
 
 div.ext_style table.list thead th:hover {
   background: transparent url(/images/rickets/blue/ext_th_hover.png) repeat-x;
+}
+
+div.ext_style table.list thead th select {
+  width: 100%;
+  border: 0px;
+  background: none;
 }
 
 div.ext_style table.list thead th a {
@@ -415,6 +447,21 @@ div.ext_style table.form_area textarea {
   font-size: 1.1em;
 }
 
+div.ext_style table.form_area textarea.tall {
+  height: 7.3em;
+  font-size: 1.1em;
+}
+
+div.ext_style table.form_area textarea.taller {
+  height: 17.3em;
+  font-size: 1.1em;
+}
+
+div.ext_style table.form_area textarea.tallest {
+  height: 27.1em;
+  font-size: 1.1em;
+}
+
 div.ext_style table.form_area textarea.tinymce {
   height: 9.7em;
 }
@@ -426,7 +473,7 @@ div.ext_style table.form_area tfoot td {
 }
 
 
-div.ext_style table.form_area tfoot button, button.delete_button {
+div.ext_style table.form_area button, button.delete_button {
   width: 75px;
   height: 21px;
   margin: 0px 0.5em;
@@ -437,7 +484,7 @@ div.ext_style table.form_area tfoot button, button.delete_button {
   text-align: center;
 }
 
-div.ext_style table.form_area tfoot button:hover, button.delete_button:hover {
+div.ext_style table.form_area button:hover, button.delete_button:hover {
   background: transparent url(/images/rickets/blue/ext_action_hover.png) repeat-x;
 }
 
@@ -486,6 +533,20 @@ div.ext_style div.button_bar a:hover {
 }
 
 /* EXT STYLE FORM PANELS */
+div.ext_style table.form_area td table.panel {
+  width: 98%;
+  border-top: 1px solid #c8c8c8;
+  vertical-align: top;
+  font-size: 1em;
+}
+div.ext_style table.form_area td table.panel td {
+  width: 67.5%;
+  border: 0;
+  font-size: 1em;
+}
+div.ext_style table.form_area td table.panel td.label {
+  width: 26.1%;
+}
 div.ext_style table.form_area td.panel {
   width: 96.1%;
   border-left: 1px solid #99bbe8;
@@ -581,11 +642,10 @@ div.ext_sub_panel li {
   margin-bottom: 0.9em;
 	margin-top: .3em;
 	padding-bottom: 1em;
-	background: url(/images/rickets/blue/ext_bullet_handle_background.png) no-repeat;
 }
 div.ext_sub_panel div.inline_bar {
 	text-align: right;
-	background: #ccc url(/images/ext_inline_bar.png) no-repeat;
+	background: #ccc url(/images/rickets/blue/ext_inline_bar.png) no-repeat;
 	width: 100%;
 	margin: 0 0 .9em -3em;
 	padding-left: 3em;
@@ -625,35 +685,57 @@ border: 1px solid #ccc;
 }
 
 div.ext_sortable_panel ul {
-list-style-type: none;
-margin: 0;
-padding: 1em 0 1em 0;
+  list-style-type: none;
+  margin: 0;
+  padding: 1em 0 1em 0;
+}
+div.ext_sortable_panel ul.sortables {
+  padding: 0 1.7em;
+  background: none;
 }
 
 div.ext_sortable_panel ul li {
 	list-style-type: none;
-	margin: 0 0 1em 1.7em;
+	width: 100%;
+	margin: 0 0 1em;
 	padding: 0;
-	width: 90%;
 	border: 1px solid #ccc;
-	cursor: hand;
 	cursor: pointer;
+}
+div.ext_sortable_panel ul li span.label {
+  width: 20%;
+  margin-bottom: 11px;
+}
+/* WYMEDITOR workarounds. */
+div.ext_sortable_panel ul li div.wym_buttons li {
+	list-style-type: none;
+	width: 20px;
+	margin: 0;
+	padding: 2px;
+	border: none;
+	cursor: none;
+}
+/* WYMEDITOR workarounds. */
+div.ext_sortable_panel ul li div.wym_buttons ul {
+	list-style-type: none;
+	background: transparent;
+	margin: 0;
+	padding: 0;
+	font-size: 1em;
 }
 
 div.ext_sortable_panel ul li div.inline_bar {
 	text-align: right;
-	background: #ccc url(/images/ext_inline_bar.png) no-repeat;
+	background: #ccc url(/images/rickets/blue/ext_inline_bar.png) no-repeat;
 	width: 100%;
 	margin: 0;
 	padding-left: 0;
 }
 
 div.ext_sub_panel ul li div.panel_content {
-	padding: 1em 2em 1em 2.5em;
-}
-
-div.ext_sub_panel ul li div.panel_content {
+	padding: 0.8em 2em 1em 1.5em;
 	font-size: .8em;
+  background: white;
 }
 
 ul#ul_home_page_features li div.panel_content div.caption {
@@ -701,25 +783,25 @@ div.pagination_info {
   float: right;
 }
 
-/* ADD FEATUERS */
-div.add_program {
+/* ADD ITEMS TO FEED */
+div.add_sortable_item {
 	font-size: .8em;
 	padding: 1.1em 1.7em;
 }
-div.add_program input {
+div.add_sortable_item input {
   width: 80%;
   font-size: 0.85em;
 }
-div.add_program ul.scrollable, div.add_program ul.auto_complete {
+div.add_sortable_item ul.scrollable, div.add_sortable_item ul.auto_complete {
 	overflow-y: scroll;
 	height: 9em;
   border: 1px solid #cccccc;
 	padding: 0;
 }
-div.add_program ul.auto_complete {
+div.add_sortable_item ul.auto_complete {
   border: 1px solid #999999;
 }
-div.add_program ul.scrollable li, div.add_program ul.auto_complete li {
+div.add_sortable_item ul.scrollable li, div.add_sortable_item ul.auto_complete li {
   width: 100%;
   margin: 0;
   border: 0;
@@ -728,6 +810,27 @@ div.add_program ul.scrollable li, div.add_program ul.auto_complete li {
   background: none;
   text-indent: 0.7em;
 }
+div.ext_sub_panel li span.sscid {
+  width: 7.5em;
+  margin-right: 0.2em;
+}
+
 select#versioned_page_additional_items_count, select#versioned_page_featured_programs_count {
 	width: 5em;
 }
+
+table.comments {
+  border: 1px solid grey;
+  background-color: white;
+  font-size: 1.5em;
+}
+table.comments thead tr th {
+  font-size: 0.7em;
+}
+table.comments tbody tr td {
+  width: auto;
+}
+table.comments tbody tr td a, table.comments tbody tr td a img {
+  border: 0;
+}
+
