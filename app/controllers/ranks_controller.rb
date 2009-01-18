@@ -7,7 +7,7 @@ class RanksController < ApplicationController
     parse_search
     parse_sort_order
     
-    @ranks = Rank.paginate :page => params[:page], :per_page => 7, :conditions => @conditions, :order => @order
+    @ranks = Rank.paginate :page => params[:page], :per_page => @default_per_page, :conditions => @conditions, :order => @order
 
     respond_to do |format|
       format.html
@@ -21,29 +21,6 @@ class RanksController < ApplicationController
     end
   end
 
-=begin
-  def post
-    respond_to do |format|
-      if @rank = Rank.create( params[:rank] )
-        flash[:notice] = 'Rank was successfully created.'
-        format.html { redirect_to( rank_url( @rank ) ) }
-      else
-        format.html { render :action => 'get' }
-      end
-    end
-  end
-
-  def put
-    respond_to do |format|
-      if @rank.update_attributes( params[:rank] )
-        flash[:notice] = 'Rank was successfully updated.'
-        format.html { redirect_to( rank_url( @rank ) ) }
-      else
-        format.html { render :action => 'get' }
-      end
-    end
-  end
-=end
 
   def post
     params[:rank][:user_id] = current_user.id unless ( params[:rank][:user_id] && params[:rank][:user_id].length > 0 )

@@ -7,7 +7,7 @@ class IdeasController < ApplicationController
     parse_search
     parse_sort_order
     
-    @ideas = Idea.paginate :page => params[:page], :per_page => 7, :conditions => @conditions, :order => @order
+    @ideas = Idea.paginate :page => params[:page], :per_page => @default_per_page, :conditions => @conditions, :order => @order
 
     respond_to do |format|
       format.html
