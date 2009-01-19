@@ -23,7 +23,7 @@
       			  Add idea to this rank:
 	            <ul class="scrollable">
   						<% Idea.all.each do |object| %>
-  						  <li onclick="Rickets.insertAssociatedItem( 'ul#ul_ideas', '<%= idea_ranking_path( :id => 0 ) %>', '<%= idea_path( :id => object ) %>' );"><strong><%= object.name %>:</strong> <%= object.elevator[0..20] %>...</li>
+  						  <li onclick="Rickets.insertAssociatedItem( 'ul#ul_ideas', '<%= idea_ranking_path( :id => 0 ) %>', '<%= idea_path( :id => object ) %>' );"><strong><%= object.name %>:</strong> <%= object.elevator[0..50] %>...</li>
   						<% end %>
     				  </ul>
 		        </div>
