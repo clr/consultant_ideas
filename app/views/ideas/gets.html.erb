@@ -27,6 +27,7 @@
         <th><%= rickets_header "name", "Name" %></th>
         <th><%= rickets_header "user_id", "Proposed&nbsp;By" %></th>
         <th><%= rickets_header "elevator", "Elevator Pitch" %></th>
+        <th><%= rickets_header "comments", "Comments" %></th>
       </tr>
     </thead>
 
@@ -36,6 +37,7 @@
         <td><%=h idea.name %></td>
         <td><%=h idea.user.name if idea.user %></td>
         <td><%=h idea.elevator %></td>
+        <td><%= idea.comments.length %></td>
       </tr>
   <% end %>
     </tbody>
